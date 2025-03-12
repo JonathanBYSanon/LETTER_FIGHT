@@ -1,0 +1,61 @@
+<!-- Html file diplaying the rules in english -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Clash - Rules</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: Black;
+            color: limegreen;
+            text-align: Center;
+            padding: 20px;
+            height: auto;
+            overflow:hidden;
+        }
+
+        h1 {
+            text-decoration: underline;
+            font-size: 40px;
+        }
+
+        .container {
+            margin: auto;
+            padding: 60px;
+            box-shadow: 0px 0px 10px limegreen;
+        }
+
+        .rule {
+            font-size: 30px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .emoji {
+            font-size: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Letter Clash - Game Rules</h1>
+
+        <p class="rule"><span class="emoji">👤 - </span> <strong>Two players</strong> take turns selecting letters to create a hidden word.</p>
+
+        <p class="rule"><span class="emoji">🔒 - </span> The hidden word must contain <strong>all</strong> the chosen letters. If a player cannot form a valid word, they must either think of another or challenge their opponent.</p>
+
+        <p class="rule"><span class="emoji">⚔ - </span> A player may <strong>challenge</strong> their opponent at any time, forcing them to reveal their word.</p>
+
+        <p class="rule"><span class="emoji">✅ - </span> If the revealed word is <strong>valid</strong>, the challenged player earns points equal to the word's length.</p>
+
+        <p class="rule"><span class="emoji">🚫 - </span> If the word is <strong>invalid</strong> (missing chosen letters or not a real word), the challenger earns points equal to the number of letters chosen so far.</p>
+
+        <p class="rule"><span class="emoji">🏆 - </span> The first player to reach the <strong>target score</strong> wins the game.</p>
+
+    </div>
+
+</body>
+</html>

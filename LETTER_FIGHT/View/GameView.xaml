@@ -1,0 +1,237 @@
+﻿<UserControl x:Class="LETTER_FIGHT.View.GameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LETTER_FIGHT.View"
+             xmlns:element="clr-namespace:LETTER_FIGHT.View.Element"
+             xmlns:viewmodel="clr-namespace:LETTER_FIGHT.ViewModel"
+             mc:Ignorable="d" >
+    <UserControl.DataContext>
+        <viewmodel:GameViewModel />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Scoreboard -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <element:PlayerElement DataContext="{Binding Players[0]}" Grid.Column="0"/>
+
+            <Grid Grid.Column="1"
+                    Background="LimeGreen">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="◀"
+                           Grid.Column="0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           Visibility="{Binding Players[0].IsTurn, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBlock Grid.Column="1"
+                           Text="{Binding TargetScore}"
+                           FontFamily="Consolas"
+                           FontSize="30"
+                           Foreground="Black"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                
+                <TextBlock Text="▶"
+                           Grid.Column="2"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           Visibility="{Binding Players[1].IsTurn, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            </Grid>
+            
+
+            <element:PlayerElement DataContext="{Binding Players[1]}" Grid.Column="2"/>
+
+        </Grid>
+
+
+
+
+        <!-- Chosen letters input  -->
+        <Grid Grid.Row="1" HorizontalAlignment="Center"
+              Visibility="{Binding IsGameOver, Converter={StaticResource BooleanToVisibilityInverseConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Background="LimeGreen"
+                    Width="60"
+                    Height="60"
+                    VerticalAlignment="Center">
+                <TextBlock Text="{Binding Input.Length}" Grid.Column="0"
+                           FontFamily="Consolas"
+                           FontSize="30"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+            <TextBlock Text="{Binding Input}" Grid.Column="1"
+                       Height="60"
+                       MinWidth="400"
+                       FontSize="50"
+                       Foreground="White"
+                       FontFamily="Consolas"
+                       Background="#99000000"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"/>
+            
+            <Button Content="⌫" 
+                    Width="60"
+                    Height="60"
+                    Command="{Binding EraseLetterCommand}" 
+                    Style="{StaticResource MatrixButtonStyle}"
+                    Grid.Column="2"/>
+        </Grid>
+        
+        <!-- Keyboard with letters and challenge button -->
+        <Grid Grid.Row="2"
+              Visibility="{Binding IsBattleInProgress, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <ListView ItemsSource="{Binding Letters}"
+                      Grid.Row="0"
+                      Style="{StaticResource MatrixListViewStyle}"
+                      SelectedItem="{Binding SelectedLetter}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="7" 
+                                     VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <element:LetterElement DataContext="{Binding}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Grid.Row="3" 
+                    Content="⚔"
+                    Width="600"
+                    Height="70"
+                    Command="{Binding ChallengeCommand}"
+                    Style="{StaticResource MatrixButtonStyle}"/>
+        </Grid>
+
+        <!-- Word Validation Process View -->
+        <Grid Grid.Row="2"
+              Margin="20"
+              Visibility="{Binding IsVerificationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border Background="LimeGreen"
+                        Width="80"
+                        Height="80"
+                        VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Word.Length}" Grid.Column="0"
+                               FontFamily="Consolas"
+                               FontSize="30"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <TextBox Text="{Binding Word, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"
+                         Height="80"
+                         MinWidth="500"
+                         FontSize="50"
+                         Padding="20,10,20,10"
+                         Foreground="White"
+                         FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"
+                         CaretBrush="LimeGreen"
+                         FontFamily="Consolas"
+                         Background="#99000000"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextAlignment="Center"/>
+
+                <Button Content="🔍" 
+                        Width="80"
+                        Height="80"
+                        Command="{Binding VerifyWordCommand}" 
+                        Style="{StaticResource MatrixButtonStyle}"
+                        Grid.Column="2"/>
+            </Grid>
+
+            <ScrollViewer Grid.Row="1"
+                          Background="Black"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <TextBlock Text="{Binding VerificationMessage}"
+                           Foreground="LimeGreen"
+                           FontSize="24"
+                           Padding="40"
+                           FontFamily="Consolas"
+                           TextWrapping="Wrap"/>
+            </ScrollViewer>
+
+            <UniformGrid Grid.Row="2" Columns="2"
+                         Visibility="{Binding IsVerificationDone, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button Content="✔️" Command="{Binding CorrectCommand}"
+                        Style="{StaticResource MatrixValidationButtonStyle}"
+                        Foreground="LimeGreen"/>
+                <Button Content="🚫" Command="{Binding IncorrectCommand}"
+                        Style="{StaticResource MatrixValidationButtonStyle}"
+                        Foreground="Red"/>
+            </UniformGrid>
+
+        </Grid>
+
+        <!-- Game Over view -->
+        <Grid Grid.Row="2"
+              Visibility="{Binding IsGameOver, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <TextBlock Text="🏆"
+                       FontSize="300"
+                       Foreground="LimeGreen"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Button Content="🡠"
+                    Width="60"
+                    Command="{Binding ExitCommand}"
+                    Style="{StaticResource MatrixButtonStyle}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+
+    </Grid>
+</UserControl>

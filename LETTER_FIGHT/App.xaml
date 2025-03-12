@@ -1,0 +1,17 @@
+﻿<Application x:Class="LETTER_FIGHT.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LETTER_FIGHT"
+             xmlns:converter="clr-namespace:LETTER_FIGHT.Converter"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converter:BooleanToVisibilityInverseConverter x:Key="BooleanToVisibilityInverseConverter"/>
+            <converter:StringToUriConverter x:Key="StringToUriConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

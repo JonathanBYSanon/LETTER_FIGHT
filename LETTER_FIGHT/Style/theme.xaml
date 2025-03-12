@@ -1,0 +1,227 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="MenuButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="Foreground" Value="LimeGreen"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Width" Value="400" />
+        <Setter Property="Height" Value="70"/>
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="BorderBrush" Value="LimeGreen"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="LimeGreen" BlurRadius="5" ShadowDepth="0"/>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}"
+                        CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="LimeGreen"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="BorderBrush" Value="White"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="DarkGreen"/>
+                <Setter Property="BorderBrush" Value="LimeGreen"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="GlowingInputStyle" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Foreground" Value="LimeGreen"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0,0,0,2"/>
+        <Setter Property="BorderBrush" Value="LimeGreen"/>
+        <Setter Property="Padding" Value="5"/>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="LimeGreen"
+                              BlurRadius="10"
+                              ShadowDepth="0"/>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="White"
+                                      BlurRadius="15"
+                                      ShadowDepth="0"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MatrixButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Foreground" Value="LimeGreen"/>
+        <Setter Property="Background" Value="#99000000"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="LimeGreen"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Name="BorderEffect"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="2"
+                            CornerRadius="5"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="LimeGreen" BlurRadius="10" ShadowDepth="0"/>
+                            </Border.Effect>
+                        </Border>
+
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                    </Grid>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BorderEffect" Property="BorderBrush" Value="Black"/>
+                            <Setter Property="Background" Value="Black" />
+                            <Setter TargetName="BorderEffect" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="White" BlurRadius="15" ShadowDepth="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BorderEffect" Property="Background" Value="DarkGreen"/>
+                            <Setter TargetName="BorderEffect" Property="BorderBrush" Value="LimeGreen"/>
+                            <Setter TargetName="BorderEffect" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="DarkGreen" BlurRadius="5" ShadowDepth="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="LimeGreen"/>
+                            <Setter TargetName="BorderEffect" Property="BorderBrush" Value="LimeGreen"/>
+                            <Setter TargetName="BorderEffect" Property="Background" Value="#99FFFFFF"/>
+                            <Setter TargetName="BorderEffect" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="LimeGreen" BlurRadius="3" ShadowDepth="0"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Cursor" Value="Arrow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="MatrixListViewStyle" TargetType="ListView">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="LimeGreen"/>
+
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="OverridesDefaultStyle" Value="True"/>
+                    
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border Name="BorderEffect"
+                                    Background="Transparent"
+                                    BorderThickness="2"
+                                    BorderBrush="Transparent">
+                                    <ContentPresenter />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="BorderEffect" Property="BorderBrush" Value="White"/>
+                                        <Setter TargetName="BorderEffect" Property="BorderThickness" Value="2"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MatrixValidationButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="LimeGreen" BlurRadius="10" ShadowDepth="0"/>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="White" BlurRadius="15" ShadowDepth="0"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

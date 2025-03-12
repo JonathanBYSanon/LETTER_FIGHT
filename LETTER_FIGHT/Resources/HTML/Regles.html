@@ -1,0 +1,60 @@
+<!-- Html file diplaying the rules in french -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Clash - Règles</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: Black;
+            color: limegreen;
+            text-align: Center;
+            padding: 20px;
+            height: auto;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-decoration: underline;
+            font-size: 40px;
+        }
+
+        .container {
+            margin: auto;
+            padding: 60px;
+            box-shadow: 0px 0px 10px limegreen;
+        }
+
+        .rule {
+            font-size: 30px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .emoji {
+            font-size: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Letter Clash - Règles du Jeu</h1>
+
+        <p class="rule"><span class="emoji">👤 - </span> <strong>Deux joueurs</strong> choisissent des lettres à tour de rôle pour composer un mot caché.</p>
+
+        <p class="rule"><span class="emoji">🔒 - </span> Le mot caché doit contenir <strong>toutes</strong> les lettres choisies. Si un joueur ne peut pas former un mot valide, il doit en trouver un autre ou défier son adversaire.</p>
+
+        <p class="rule"><span class="emoji">⚔ - </span> Un joueur peut <strong>défier</strong> son adversaire à tout moment, l'obligeant à révéler son mot.</p>
+
+        <p class="rule"><span class="emoji">✅ - </span> Si le mot révélé est <strong>valide</strong>, le joueur mis au défi gagne un nombre de points égal à la longueur du mot.</p>
+
+        <p class="rule"><span class="emoji">🚫 - </span> Si le mot est <strong>invalide</strong> (ne contient pas toutes les lettres choisies ou n'est pas un vrai mot), le joueur qui a lancé le défi gagne un nombre de points égal au nombre de lettres choisies jusque-là.</p>
+
+        <p class="rule"><span class="emoji">🏆 - </span> Le premier joueur à atteindre le <strong>score cible</strong> remporte la partie.</p>
+
+    </div>
+</body>
+</html>

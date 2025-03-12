@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="LETTER_FIGHT.View.SettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LETTER_FIGHT.View"
+             xmlns:vm="clr-namespace:LETTER_FIGHT.ViewModel"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:SettingViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Grid.Row="1" Rows="4">
+            <!-- Player 1 -->
+            <Border Background="LimeGreen" Width="400" Height="80">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                
+
+                    <TextBlock Text="👤 1" 
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="20"
+                               Foreground="Black"
+                               FontWeight="Bold"/>
+
+                    <TextBox Grid.Column="1"
+                             Text="{Binding Setting.Player1Name}"
+                             Background="Black"
+                             Foreground="LimeGreen"
+                             FontFamily="Consolas"
+                             TextAlignment="Center"
+                             FontSize="24"
+                             VerticalContentAlignment="Center"/>
+                </Grid>
+            </Border>
+            
+            <!-- Player 2 -->
+            <Border Background="LimeGreen" Width="400" Height="80">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="👤 2" 
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="20"
+                               Foreground="Black"
+                               FontWeight="Bold"/>
+
+                    <TextBox Grid.Column="1"
+                             Text="{Binding Setting.Player2Name}"
+                             Background="Black"
+                             Foreground="LimeGreen"
+                             FontFamily="Consolas"
+                             TextAlignment="Center"
+                             FontSize="24"
+                             VerticalContentAlignment="Center"/>
+                </Grid>
+            </Border>
+            
+            <!-- Target score -->
+            <Border Background="LimeGreen" Width="400" Height="80">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="🏆" 
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="20"
+                               Foreground="Black"
+                               FontWeight="Bold"/>
+
+                    <TextBox Grid.Column="1"
+                             Text="{Binding Setting.TargetScore}"
+                             Background="Black"
+                             Foreground="LimeGreen"
+                             FontFamily="Consolas"
+                             TextAlignment="Center"
+                             FontSize="24"
+                             VerticalContentAlignment="Center"/>
+                </Grid>
+            </Border>
+            
+            <!-- Language -->
+            <Border Background="LimeGreen" Width="400" Height="80">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="🌐" 
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="20"
+                               Foreground="Black"
+                               FontWeight="Bold"/>
+
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding Languages}"
+                              SelectedItem="{Binding Setting.Language}"
+                              Foreground="Black"
+                              FontFamily="Consolas"
+                              FontSize="30"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"/>
+                </Grid>
+            </Border>
+
+        </UniformGrid>
+
+        <Button Grid.Row="2"
+                Content="💾"
+                Command="{Binding SaveCommand}"
+                Style="{StaticResource MatrixButtonStyle}"
+                Width="400"
+                Height="70"/>
+
+    </Grid>
+</UserControl>
